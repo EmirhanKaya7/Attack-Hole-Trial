@@ -1,19 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using TMPro;
 public class TriggerManager : MonoBehaviour
 {
     public TextMeshProUGUI countText;
     public TextMeshProUGUI sphereText;
+    public int count=0;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("bullet"))
         {
             //other.gameObject.SetActive(false);
-
+            count++;
             if (other.name.Contains("Cube"))
             {
                 PlayerPrefs.SetInt("Regular",PlayerPrefs.GetInt("Regular")+1 );
@@ -27,10 +29,18 @@ public class TriggerManager : MonoBehaviour
         }
     }
 
+    public void checkUpgrade()
+    {
+        if (count == 5)
+        {
+            transform.parent.DOScale(transform.localScale * 2, 1f);
+            count = 0;
+        }
+    }
     private void Update()
     {
         countText.text = PlayerPrefs.GetInt("Regular").ToString();
         sphereText.text = PlayerPrefs.GetInt("Sphere").ToString();
-
+    checkUpgrade();
     }
 }
