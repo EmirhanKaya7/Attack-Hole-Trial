@@ -9,6 +9,12 @@ public class TriggerManager : MonoBehaviour
     public TextMeshProUGUI countText;
     public TextMeshProUGUI sphereText;
     public int count=0;
+    private Vector3 originScale;
+
+    private void Start()
+    {
+        originScale = transform.parent.localScale;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,10 +28,15 @@ public class TriggerManager : MonoBehaviour
                 
             }
             else if (other.name.Contains("Sphere"))
-                        {
-                            PlayerPrefs.SetInt("Sphere",PlayerPrefs.GetInt("Sphere")+1 );
-                            
-                        }
+            {
+                PlayerPrefs.SetInt("Sphere",PlayerPrefs.GetInt("Sphere")+1 );
+            }
+        }
+
+        if (other.CompareTag("Finish"))
+        {
+            transform.parent.DOScale(originScale * 2, 1f).OnComplete((() => originScale = transform.parent.localScale));
+
         }
     }
 
@@ -33,7 +44,7 @@ public class TriggerManager : MonoBehaviour
     {
         if (count == 5)
         {
-            transform.parent.DOScale(transform.localScale * 2, 1f);
+            transform.parent.DOScale(originScale * 2, 1f).OnComplete((() => originScale = transform.parent.localScale));
             count = 0;
         }
     }
