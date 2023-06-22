@@ -1199,6 +1199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7d57ca17013a94486dac2460c109bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpBulletPre: {fileID: 0}
+  regBulletPre: {fileID: 0}
+  regBullet: 0
+  SpBullet: 0
 --- !u!4 &442820773
 Transform:
   m_ObjectHideFlags: 0
