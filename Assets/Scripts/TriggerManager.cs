@@ -33,18 +33,14 @@ public class TriggerManager : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Finish"))
-        {
-            transform.parent.DOScale(originScale * 2, 1f).OnComplete((() => originScale = transform.parent.localScale));
-
-        }
+       
     }
 
     public void checkUpgrade()
     {
         if (count == 5)
         {
-            transform.parent.DOScale(originScale * 2, 1f).OnComplete((() => originScale = transform.parent.localScale));
+            transform.parent.DOScale(originScale * 1.25f, 1f).OnComplete((() => originScale = transform.parent.localScale));
             count = 0;
         }
     }

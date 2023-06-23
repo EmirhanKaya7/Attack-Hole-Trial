@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         {
            regBullet = PlayerPrefs.GetInt("Regular");
         }
-        else if (PlayerPrefs.HasKey("Sphere"))
+        if (PlayerPrefs.HasKey("Sphere"))
         {
             SpBullet = PlayerPrefs.GetInt("Sphere");
         }
@@ -41,11 +41,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerPrefs.GetInt("Regular")==5 && SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            SceneManager.LoadScene(1);
-        }
+       
     }
-    
+
+    public void sceneButton()
+    {
+        SceneManager.LoadScene(1);
+    }
     
 }
